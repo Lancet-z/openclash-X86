@@ -22,12 +22,14 @@ on:
       - "feeds.conf.default"
 
 env:
-  CONFIG_FILE: "config/xg-040g-md.config"
+  CONFIG_FILE: "config/XG-040G-MD.config"
   REPO_URL: https://github.com/xiangtailiang/openwrt.git
   REPO_BRANCH: main
   FEEDS_CONF: feeds.conf.default
   UPLOAD_FIRMWARE: true
   UPLOAD_RELEASE: true
+  DIY_P1_SH: diy-part1.sh
+  DIY_P2_SH: diy-part2.sh
   KEEP_RELEASES: 20
   KEEP_RELEASE_MARKER: "[keep-release]"
   CCACHE_DIR: /mnt/openwrt/ccache
@@ -124,12 +126,6 @@ jobs:
         run: |
           ./scripts/feeds update -a
           ./scripts/feeds install -a -f
-
-      - name: Install third-party packages (homeproxy, passwall)
-        working-directory: ./openwrt/package
-        run: |
-          chmod +x $GITHUB_WORKSPACE/scripts/update-packages.sh
-          bash $GITHUB_WORKSPACE/scripts/update-packages.sh
           
       - name: Copy configuration and defconfig
         run: |
