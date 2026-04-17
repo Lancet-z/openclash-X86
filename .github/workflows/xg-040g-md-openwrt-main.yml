@@ -138,7 +138,7 @@ jobs:
         with:
           name: build-config
           path: |
-            xg-040g-md.config
+            config/xg-040g-md.config
             openwrt/defconfig-final.config
             openwrt/feeds.conf.default
 
