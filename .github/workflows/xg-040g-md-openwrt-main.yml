@@ -88,6 +88,21 @@ jobs:
         run: |
           git clone --depth 1 --branch "$REPO_BRANCH" "$REPO_URL" openwrt
 
+      - name: Load custom feeds
+        run: |
+         [ -e $FEEDS_CONF ] && mv $FEEDS_CONF openwrt/feeds.conf.default
+         chmod +x $DIY_P1_SH
+         cd openwrt
+         $GITHUB_WORKSPACE/$DIY_P1_SH
+
+      - name: Load custom configuration
+        run: |
+          [ -e files ] && mv files openwrt/files
+          [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
+          chmod +x $DIY_P2_SH
+          cd openwrt
+          $GITHUB_WORKSPACE/$DIY_P2_SH
+
       - name: Move build dirs to /mnt/openwrt
         run: |
           sudo mkdir -p /mnt/openwrt/{dl,staging_dir,build_dir,ccache}
