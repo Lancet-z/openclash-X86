@@ -29,7 +29,6 @@ env:
   UPLOAD_FIRMWARE: true
   UPLOAD_RELEASE: true
   DIY_P1_SH: diy-part1.sh
-  DIY_P2_SH: diy-part2.sh
   KEEP_RELEASES: 20
   KEEP_RELEASE_MARKER: "[keep-release]"
   CCACHE_DIR: /mnt/openwrt/ccache
@@ -94,14 +93,6 @@ jobs:
          chmod +x $DIY_P1_SH
          cd openwrt
          $GITHUB_WORKSPACE/$DIY_P1_SH
-
-      - name: Load custom configuration
-        run: |
-          [ -e files ] && mv files openwrt/files
-          [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
-          chmod +x $DIY_P2_SH
-          cd openwrt
-          $GITHUB_WORKSPACE/$DIY_P2_SH
 
       - name: Move build dirs to /mnt/openwrt
         run: |
