@@ -14,6 +14,7 @@
 #sed -i 's/^#\(.*helloworld\)/\1/' feeds.conf.default
 
 # Add a feed source
-echo 'src-git openclash https://github.com/vernesong/OpenClash.git' >>feeds.conf.default
-echo 'src-git luci-app-nikki https://github.com/nikkinikki-org/OpenWrt-nikki.git' >>feeds.conf.default
+echo 'src-git openclash https://github.com/vernesong/OpenClash.git' >> "feeds.conf.default"
+# 添加源
+echo "src-git nikki https://github.com/nikkinikki-org/OpenWrt-nikki.git;main" >> "feeds.conf.default"
 #echo 'src-git passwall https://github.com/xiaorouji/openwrt-passwall' >>feeds.conf.default
